@@ -26,25 +26,25 @@ const HotelCard = ({data}) => {
 {/* //second */}
       <div className="flex flex-col gap-10 justify-between w-full">
          <div>
-          <h1>{data.name}</h1>
+          <h1 className="">{data.name}</h1>
           <p>{data.location}</p>
          </div>
 
          <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
             <span className="bg-green-500 py-1 px-2 rounded text-white text-[10px] flex items-center gap-1">{data.ratings} <IoMdStar /> </span>
-            <span>(2278 Ratings). Excellent</span>
+            <span className="text-sm">(2278 Ratings). Excellent</span>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             {data.facilities.map((item)=>(
-             <div className="flex items-center gap-2" >
-              <span>{item.name}</span>
-             <Image src={item.img} height={200} width={200} className="w-6 h-6 flex"/>
+             <div className="flex items-center gap-1" >
+              <span className="text-sm">{item.name}</span>
+             <Image src={item.img} height={200} width={200} className="w-4 h-4 flex"/>
              
              </div>
             ))}
 
-            <div className="cursor-pointer">
+            <div className="cursor-pointer text-sm">
               +20 more
             </div>
           </div>
@@ -52,12 +52,12 @@ const HotelCard = ({data}) => {
 
           <div className="flex items-center justify-between ">
             <div>
-            <div className="flex gap-2"><h1> INR {" "}791  </h1><del>3352</del> {" "}<span>72% off</span></div>
-         <p>+145 texes & fees per room per night</p>
+            <div className="flex gap-2"><h1 className="text-sm"> INR {" "}{data.price}  </h1><del className="text-sm">3352</del> {" "}<span className="text-sm">72% off</span></div>
+         <p className="text-sm">+145 texes & fees per room per night</p>
             </div>
             <div className="flex gap-2">
-              <Link href={`/hotels/${data._id}`} className="bg-white border border-black py-1 px-4" >View Details</Link>
-              <button className="bg-green-500 text-white py-1 px-4">Book Now</button>
+              <Link href={`/hotels/${data._id}`} className="bg-white border border-black py-1 px-4 text-sm" >View Details</Link>
+              <button className="bg-green-500 text-white py-1 px-4 text-sm">Book Now</button>
             </div>
 
           </div>

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 
 const SingleHotel = ({hotel}) => {
-  console.log(hotel)
+
   return (
 
     <> 
@@ -31,7 +31,7 @@ const SingleHotel = ({hotel}) => {
                 {
                   hotel?.facilities.map((item)=>(
                     <li className='flex  gap-2 items-center'>
-                      <span>{item.name}</span>
+                      <span >{item.name}</span>
                       <Image className='w-6 h-6' src={item.img} height={200} width={200}></Image>
                     </li>
                   ))

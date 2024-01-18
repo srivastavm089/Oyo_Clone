@@ -17,6 +17,7 @@ export default async function handler(req, res){
   if(req.method==="GET"){
   
     const hotels = await hotel.find({location:req.query.city})
+    console.log(hotels)
     const allHotels = await hotel.find({})
     if(hotels.length < 1){
       return res.status(404).json({

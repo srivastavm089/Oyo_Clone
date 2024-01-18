@@ -28,6 +28,16 @@ gallery:[
 price:{
     type:Number
 },
+collections:{
+type:String,
+
+},
+categories:{
+ type:String
+},
+accomodation:{
+  type:String
+},
 facilities:[
     {
         img:String,

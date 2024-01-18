@@ -1,9 +1,17 @@
+
 import Head from 'next/head'
 import Image from 'next/image'
-import React from 'react'
-
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import   Cookies from "js-cookie";
+import Link from 'next/link';
 const SingleHotel = ({hotel}) => {
-
+  const router = useRouter()
+  const [user, setUser] = useState("")
+useEffect(()=>{
+  const check =Cookies.get("user")
+setUser(check)
+}, [])
   return (
 
     <> 
@@ -37,7 +45,9 @@ const SingleHotel = ({hotel}) => {
                   ))
                 }
             </ul>
-            <button className="w-60 h-14 rounded-lg bg-orange-400 text-lg my-5">Book Now</button>
+          {
+            user? <Link href={`/payment/${hotel?._id}`}> <button className="w-60 h-14 rounded-lg bg-orange-400 text-lg my-5">Book Now</button></Link>   :<button className='bg-blue-400 text-white  py-2 px-10 rounded mt-2'>Login to book</button>
+          }
         </div>
     </div>
     </>

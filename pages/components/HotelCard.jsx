@@ -1,8 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { IoMdStar } from "react-icons/io";
+import   Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 const HotelCard = ({data}) => {
-  console.log(data.facilities)
+   
+  const [user, setUser] = useState("")
+useEffect(()=>{
+  const check =Cookies.get("user")
+setUser(check)
+}, [])
+
+const router = useRouter()
+
   return (
     <div className=" border-t rounded-lg h-72  w-full mb-5 p-5 flex items-center gap-5">
       <div className="flex gap-1">
@@ -38,7 +49,7 @@ const HotelCard = ({data}) => {
           <div className="flex gap-3">
             {data.facilities.map((item)=>(
              <div className="flex items-center gap-1" >
-              <span className="text-sm">{item.name}</span>
+              <span className="text-sm line-clamp-1">{item.name}</span>
              <Image src={item.img} height={200} width={200} className="w-4 h-4 flex"/>
              
              </div>
@@ -51,13 +62,16 @@ const HotelCard = ({data}) => {
 
 
           <div className="flex items-center justify-between ">
-            <div>
-            <div className="flex gap-2"><h1 className="text-sm"> INR {" "}{data.price}  </h1><del className="text-sm">3352</del> {" "}<span className="text-sm">72% off</span></div>
+            <div className="">
+            <div className="flex gap-2 items-center"><h1 className="text-xl font-bold"> ₹ {" "}{data.price}  </h1><del className="text-sm">3352</del> {" "}<span className="text-sm">72% off</span></div>
          <p className="text-sm">+145 texes & fees per room per night</p>
             </div>
             <div className="flex gap-2">
               <Link href={`/hotels/${data._id}`} className="bg-white border border-black py-1 px-4 text-sm" >View Details</Link>
-              <button className="bg-green-500 text-white py-1 px-4 text-sm">Book Now</button>
+           {
+
+          user &&<button className="bg-green-500 text-white py-1 px-8 hover:bg-green-600">Book</button>  
+           }
             </div>
 
           </div>

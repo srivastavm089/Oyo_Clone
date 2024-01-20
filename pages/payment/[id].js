@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
 import Script from "next/script";
 import React, { useEffect } from "react";
 
 const Payment = () => {
   const d = useParams();
+ const router = useRouter();
 
   const makePayment = async () => {
     const { data } = await axios.post(
@@ -20,7 +22,12 @@ const Payment = () => {
       amount: +data?.amount,
       order_id: data?.id,
       description: "Thank you for order",
-      handler: function (res) {},
+      handler: function (res) {
+        router.push("/success")
+   console.log(res);
+   console.log("payment successfull")
+  
+      },
       prefill: {
         name: "abhay",
         email: "abhay@gmail.com",
@@ -28,7 +35,9 @@ const Payment = () => {
       },
     };
     const paymentObj = new window.Razorpay(options);
-    paymentObj.open();
+     paymentObj.open()
+    
+
   };
   useEffect(() => {
     makePayment();

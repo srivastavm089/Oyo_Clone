@@ -7,10 +7,22 @@ import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Header1 from "../components/Header1";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRangePicker } from "react-date-range";
 import StarIcon from "@mui/icons-material/Star";
+
+
+const selectionRange = {
+  startDate: new Date(),
+  endDate: new Date(),
+  key: "selection",
+};
+
 const SingleHotel = ({ hotel }) => {
   const router = useRouter();
+
   const [user, setUser] = useState("");
 
   const scrollRef = useRef();
@@ -20,12 +32,30 @@ const SingleHotel = ({ hotel }) => {
     setUser(check);
   }, []);
 
-  console.log(hotel);
   const rightHandler = () => {
     scrollRef.current.scrollLeft += 500;
   };
   const leftHandler = () => {
     scrollRef.current.scrollLeft -= 500;
+  };
+
+  const dataHandler = (e) => {
+    console.log("this", e.selection);
+  };
+
+  const customStyles = {
+    // Customize styles as needed
+    Calendar: {
+      backgroundColor: "white",
+      borderRadius: "8px",
+      boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+    },
+    MonthAndYear: {
+      display: "none", // Hide the month and year header
+    },
+    Weekday: {
+      display: "none", // Hide the week labels
+    },
   };
   return (
     <>
@@ -55,7 +85,7 @@ const SingleHotel = ({ hotel }) => {
         </div>
 
         <div className="px-36 mt-12 grid gap-20 grid-cols-12">
-          <div  className=" col-span-8 ">
+          <div className=" col-span-8 ">
             {/* left */}
 
             <div className="flex  gap-10">
@@ -101,7 +131,7 @@ const SingleHotel = ({ hotel }) => {
                         width={200}
                         className="w-4 h-4"
                       />
-                      <p>{item.name}</p>
+                      <p className="whitespace-nowrap">{item.name}</p>
                     </div>
                   );
                 })}
@@ -117,65 +147,116 @@ const SingleHotel = ({ hotel }) => {
                 high-quality cleaning products and maintaining social distance
                 to using protective gear and more.
               </p>
-             <button className="mt-2">Read More</button>
+              <button className="mt-2">Read More</button>
             </div>
-
 
             <div className="">
               <h1 className="text-3xl font-bold ">Choose your room</h1>
-              <p className="flex mt-5 items-center gap-2 bg-gradient-to-r from-slate-500 to-slate-100 py-1 px-2"> <StarIcon className="text-[gold] text-lg "/><span>SELECTED CATEGORY</span></p>
+              <p className="flex mt-5 items-center gap-2 bg-gradient-to-r from-slate-500 to-slate-100 py-1 px-2">
+                {" "}
+                <StarIcon className="text-[gold] text-lg " />
+                <span>SELECTED CATEGORY</span>
+              </p>
               <div className="border flex justify-between px-4 py-4">
                 <div className="flex flex-col gap-12">
-               <div className="">
-              <p className="flex items-center gap-1"> Classic <CheckCircleIcon className='    text-green-500'/></p>
-                  <p>Room size: 120 sqft</p>
-               </div>
+                  <div className="">
+                    <p className="flex items-center gap-1">
+                      {" "}
+                      Classic <CheckCircleIcon className="    text-green-500" />
+                    </p>
+                    <p>Room size: 120 sqft</p>
+                  </div>
 
                   <div className="flex items-center gap-4">
-                 <div className="flex items-center gap-4">
-                 <Image src={hotel.facilities[0].img} height={200} width={200} className="w-6"/>
-                 <p>{hotel.facilities[0].name}</p>
-                 </div>
-               <div className="flex items-center gap-4">
-               <Image src={hotel.facilities[1].img} height={200} width={200} className="w-6"/>
-               <p>{hotel.facilities[1].name}</p>
-               </div>
-                </div>
-
+                    <div className="flex items-center gap-4">
+                      <Image
+                        src={hotel.facilities[0].img}
+                        height={200}
+                        width={200}
+                        className="w-6"
+                      />
+                      <p>{hotel.facilities[0].name}</p>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <Image
+                        src={hotel.facilities[1].img}
+                        height={200}
+                        width={200}
+                        className="w-6"
+                      />
+                      <p>{hotel.facilities[1].name}</p>
+                    </div>
+                  </div>
                 </div>
 
                 <div>
-                  <Image src={hotel.banner} height={200} width={200}/>
+                  <Image src={hotel.banner} height={200} width={200} />
                 </div>
-
-                
               </div>
             </div>
 
             <div className="border flex items-center justify-between px-5 py-2">
               <div className="">
-                  <div> <span className="text-2xl font-bold">₹{hotel.price}</span> <del>₹4017</del></div>
-                  <p>+ ₹169 taxes & fee</p>
-                   
+                <div>
+                  {" "}
+                  <span className="text-2xl font-bold">
+                    ₹{hotel.price}
+                  </span>{" "}
+                  <del>₹4017</del>
+                </div>
+                <p>+ ₹169 taxes & fee</p>
               </div>
 
-               <div className="border flex items-center ">
-               <CheckCircleIcon className='    text-green-500'/>
+              <div className="border flex items-center ">
+                <CheckCircleIcon className="    text-green-500" />
                 <button className="px-10 py-2">SELECTED</button>
-               </div>
+              </div>
             </div>
-
-
-
-
-
           </div>
 
+          <div className="col-span-4  border px-4 py-4">
+            <div>
+              <div className="flex gap-2 items-center">
+                <h1 className="text-2xl font-bold">₹{hotel.price}</h1>{" "}
+                <del>₹4017</del> <span className="text-[orange]">76% off</span>
+              </div>
 
+              <span className="text-sm">+ taxes & fees: ₹169</span>
+            </div>
 
+            <div className="flex">
+              <div className="">
+                <DateRangePicker
+                className="custom-date-range"
+                       moveRangeOnFirstSelection={false}
+                       editableDateInputs={true}
+                       dayContentRenderer={null}
 
-          <div className="col-span-4  border">
-        hi
+                       ranges={[selectionRange]}
+                       onChange={dataHandler}
+                />
+              </div>
+
+             
+  <div>
+
+    
+
+              
+      
+              </div>
+            </div>
+
+            <div className="border min-h-10 flex items-center justify-between px-5 shadow-sm py-3 ">
+              <div className="flex gap-2 items-center">
+                <Image src={'/classic.svg' } height={200} width={200} alt="classic" className="w-5 h-5"/>
+                <p>Classic</p>
+              </div>
+
+              <div>
+                 <Image src={"/pencil.svg"} height={200} width={200} className="w-3 cursor-pointer h-5"/>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -216,9 +297,8 @@ const SingleHotel = ({ hotel }) => {
 };
 export async function getServerSideProps(ctx) {
   let res = await fetch(`${process.env.BASE_URL}/api/hotels/${ctx.params.id}`);
-  console.log(ctx);
+
   res = await res.json();
-  console.log(res);
 
   return {
     props: {

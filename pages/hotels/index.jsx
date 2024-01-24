@@ -8,7 +8,7 @@ import Loader from "../components/Loader";
 import { useRouter } from "next/router";
 import Image from "next/image";
 const Hotels = ({ hotels }) => {
-  const [value, setValue] = React.useState([499, 1000]);
+  const [value, setValue] = React.useState([499, 20000]);
   const [list, setList] = useState([]);
   const [loader, setLoader] = useState(false);
  const router = useRouter()

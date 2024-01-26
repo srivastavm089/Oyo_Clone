@@ -18,13 +18,13 @@ const router = useRouter()
     <div className=" border-t rounded-lg h-72  w-full mb-5 p-5 flex items-center gap-5">
       <div className="flex gap-1">
         <div>
-          <Image src={data.banner} height={200} width={200} className="w-[500px] h-[215px]"></Image>
+          <Image alt="logo" src={data.banner} height={200} width={200} className="w-[500px] h-[215px]"></Image>
         </div>
         <div className="flex flex-col items-center justify-center gap-[1vh]">
-        <Image src={data.banner} height={200} width={200} className="h-12 w-20 cursor-pointer"></Image>
-        <Image src={data.banner} height={200} width={200} className="h-12 w-20 cursor-pointer"></Image>
-        <Image src={data.banner} height={200} width={200} className="h-12 w-20 cursor-pointer"></Image>
-        <Image src={data.banner} height={200} width={200} className="h-12 w-20 cursor-pointer"></Image>
+        <Image alt="logo" src={data.banner} height={200} width={200} className="h-12 w-20 cursor-pointer"></Image>
+        <Image alt="logo" src={data.banner} height={200} width={200} className="h-12 w-20 cursor-pointer"></Image>
+        <Image alt="logo" src={data.banner} height={200} width={200} className="h-12 w-20 cursor-pointer"></Image>
+        <Image alt="logo" src={data.banner} height={200} width={200} className="h-12 w-20 cursor-pointer"></Image>
 
 
           
@@ -47,10 +47,10 @@ const router = useRouter()
             <span className="text-sm">(2278 Ratings). Excellent</span>
           </div>
           <div className="flex gap-3">
-            {data.facilities.map((item)=>(
-             <div className="flex items-center gap-1" >
+            {data.facilities.map((item, index)=>(
+             <div className="flex items-center gap-1" key={index} >
               <span className="text-sm line-clamp-1">{item.name}</span>
-             <Image src={item.img} height={200} width={200} className="w-4 h-4 flex"/>
+             <Image alt="logo" src={item.img} height={200} width={200} className="w-4 h-4 flex"/>
              
              </div>
             ))}

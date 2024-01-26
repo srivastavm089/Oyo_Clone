@@ -20,7 +20,7 @@ const Header1 = () => {
  
 
   return (
-    <div className='flex justify-between items-center   h-20  px-10  border-b-2 border-gray-300'>
+    <div className='flex justify-between items-center   h-20  px-10  border-b-2 border-gray-300 sticky top-0 z-20 bg-white'>
      <img src={"/logo.png"}  alt="logo"  className='w-24 h-full' />
    <div className='flex h-full'>
    <Block title={"Become a member"} para={"Additional 0% off on stays."} logo={"/first.svg"} />

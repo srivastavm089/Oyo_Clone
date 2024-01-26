@@ -28,10 +28,13 @@ gallery:[
 price:{
     type:Number
 },
-collections:{
-type:String,
+collections:[
+    {
+        type:String,
+        
+    }
+],
 
-},
 categories:{
  type:String
 },

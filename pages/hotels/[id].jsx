@@ -23,7 +23,9 @@ const selectionRange = {
 
 const SingleHotel = ({ hotel }) => {
   const router = useRouter();
+  const [dateRanges, setDateRanges] = useState([new Date().getDate(), new Date().getDate()+1])
 
+  
   const [user, setUser] = useState("");
 
   const scrollRef = useRef();
@@ -71,22 +73,24 @@ const SingleHotel = ({ hotel }) => {
         >
           {hotel?.gallery.map((img) => {
             return (
-              <Image src={img} width={500} height={500} className="h-[55vh]" />
+              <Image alt="logo" src={img} width={500} height={500} className="h-[55vh]" />
             );
           })}
 
           <ChevronRightIcon
-            className="bg-white  absolute right-0 rounded-full w-12 h-12 text-red-500 cursor-pointer top-40 shadow-lg shadow-gray-500/50"
+            style={{width:"3vw", height:"6vh"}}
+            className="bg-white  absolute right-0 rounded-full w-12  h-12 text-red-500 cursor-pointer top-40 shadow-lg shadow-gray-500/50"
             onClick={rightHandler}
           />
           <ChevronLeftIcon
-            className="bg-white absolute   rounded-full w-12 text-red-500 cursor-pointer h-12 top-40 shadow-lg shadow-gray-500/50"
+          style={{width:"3vw", height:"6vh"}}
+            className="bg-white absolute   rounded-full w-12 text-red-500 cursor-pointer h-36 top-40 shadow-lg shadow-gray-500/50"
             onClick={leftHandler}
           />
         </div>
 
-        <div className="px-36 mt-12 grid gap-20 grid-cols-12">
-          <div className=" col-span-8 ">
+        <div className="px-36 mt-12 grid gap-20 grid-cols-12 ">
+          <div className=" col-span-8  ">
             {/* left */}
 
             <div className="flex  gap-10">
@@ -127,6 +131,7 @@ const SingleHotel = ({ hotel }) => {
                   return (
                     <div key={item} className="flex items-center gap-2">
                       <Image
+                      alt="logo"
                         src={item.img}
                         height={200}
                         width={200}
@@ -171,6 +176,7 @@ const SingleHotel = ({ hotel }) => {
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-4">
                       <Image
+                      alt="logo"
                         src={hotel.facilities[0].img}
                         height={200}
                         width={200}
@@ -180,6 +186,7 @@ const SingleHotel = ({ hotel }) => {
                     </div>
                     <div className="flex items-center gap-4">
                       <Image
+                      alt="logo"
                         src={hotel.facilities[1].img}
                         height={200}
                         width={200}
@@ -191,14 +198,16 @@ const SingleHotel = ({ hotel }) => {
                 </div>
 
                 <div>
-                  <Image src={hotel.banner} height={200} width={200} />
+                  <Image alt="logo" src={hotel.banner} height={200} width={200} />
                 </div>
               </div>
             </div>
 
-            <div className="border flex items-center justify-between px-5 py-2">
+            <div className="border flex items-center justify-between px-5 py-2 ">
+              
               <div className="">
                 <div>
+                
                   {" "}
                   <span className="text-2xl font-bold">
                     ₹{hotel.price}
@@ -209,14 +218,16 @@ const SingleHotel = ({ hotel }) => {
               </div>
 
               <div className="border flex items-center ">
+              
                 <CheckCircleIcon className="    text-green-500" />
                 <button className="px-10 py-2">SELECTED</button>
               </div>
             </div>
           </div>
 
-          <div className="col-span-4  border px-4 py-4">
+          <div className="col-span-4   px-4 py-4  top-56    "  >
             <div>
+              
               <div className="flex gap-2 items-center">
                 <h1 className="text-2xl font-bold">₹{hotel.price}</h1>{" "}
                 <del>₹4017</del> <span className="text-[orange]">76% off</span>
@@ -238,6 +249,8 @@ const SingleHotel = ({ hotel }) => {
                 />
               </div>
 
+          
+
              
   <div>
 
@@ -250,13 +263,19 @@ const SingleHotel = ({ hotel }) => {
 
             <div className="border min-h-10 flex items-center justify-between px-5 shadow-sm py-3 ">
               <div className="flex gap-2 items-center">
-                <Image src={'/classic.svg' } height={200} width={200} alt="classic" className="w-5 h-5"/>
+                <Image  src={'/classic.svg' } height={200} width={200} alt="classic" className="w-5 h-5"/>
                 <p>Classic</p>
               </div>
 
               <div>
-                 <Image src={"/pencil.svg"} height={200} width={200} className="w-3 cursor-pointer h-5"/>
+                 <Image alt="logo" src={"/pencil.svg"} height={200} width={200} className="w-3 cursor-pointer h-5"/>
               </div>
+
+
+             
+            </div>
+            <div>
+          <button className="bg-green-500 text-white p-2 w-full mt-5 hover:bg-green-700  rounded">Continue to Book</button>
             </div>
           </div>
         </div>

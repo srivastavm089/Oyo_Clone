@@ -19,11 +19,11 @@ const Home = () => {
  <Header2/>
  <Header3/>
  <div className='mx-20 my-10'>
- <Image src={"/banner1.avif"} alt='banner1' width={200} height={200} className='h-80 w-full'></Image>
+ <Image  src={"/banner1.avif"} alt={"logo"} width={200} height={200} className='h-80 w-full'></Image>
  </div>
 
  <div className='mx-20 my-10'>
- <Image src={"/banner2.avif"} alt='banner1' width={200} height={200} className='h-40 w-full'></Image>
+ <Image src={"/banner2.avif"} alt={"logo"} width={200} height={200} className='h-40 w-full'></Image>
  </div>
 
  
